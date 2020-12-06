@@ -14,8 +14,6 @@
             </div>
             <button @click="nextStep" class="btn btn-primary mr-2">Next</button>
         </div>
-        {{htmlcontent.body}}
-
         <div class="card-footer">
             Next we'll gather a few more details so we can make you a quote for you.
         </div>
@@ -30,14 +28,11 @@
 import { mapGetters } from "vuex"
 import { mapActions } from "vuex"
 
-require("isomorphic-fetch")
-
 export default {
     name : "UrlInput",
     data () {
         return {
-            htmlcontent : '',
-            preferable : true,
+            preferable : true
         }
     },
     computed : {
@@ -47,39 +42,21 @@ export default {
                 return this.getItemUrl
             },
             set(value) {
-                if (value.indexOf('http://') == 0 ||  value.indexOf('https://') == 0)    this.preferable = true;
+                if (value.indexOf('http://') == 0 ||  value.indexOf('https://') == 0)
+                    this.preferable = true;
                 else this.preferable = false;
+
                 this.updateUrl(value)
             }
         },
     },
     methods : {
         ...mapActions(['updateUrl', 'updateStep']),
-        sendRequest(url, method, body) {
-            const options = {
-                method: method,
-                headers: new Headers({'content-type': 'application/json'}),
-                mode: 'no-cors'
-            };
-
-            options.body = JSON.stringify(body);
-
-            return fetch(url, options);
+        nextStep : function() {
+            if (this.itemUrl && this.preferable){
+                this.updateStep(2)
+            }
         },
-        nextStep : async function() {
-            if(this.itemUrl && this.preferable) 
-                return this.updateStep(2)
-            
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', "https://www.mercari.com/us/item/m25479651386/?ref=brand_detail", true)
-            xhr.send();
-            xhr.addEventListener("readystatechange", () => {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr)
-                }
-            }, false);
-
-        }
     }
 }
 </script>

@@ -6,6 +6,11 @@
             </h3>
         </div>
         <!--begin::Form-->
+        <ProgressModalComponent
+             @fetchingProduction="fetchingProduction"
+             v-show="progressVisible"
+        />
+        <button class = "btn btn-primary" @click="fetchingProduction">stress</button>
         <div class="card-body">
             <div class="form-group">
                 <label for="inputUrl">Product web Page <span class="text-danger">*</span></label>
@@ -30,8 +35,8 @@
             </div>
             <div class="form-group">
                 <label for="inputUrl">Item Price in Japanese Yen</label>
-                <input class="form-control" type="number" v-model="newItem.price.priceYen"/>
-                <span v-show="!newItem.price.priceYen" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                <input class="form-control" type="number" v-model="newItem.priceYen"/>
+                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
             </div>
 
             <div class="form-group">
@@ -52,6 +57,10 @@
         <div class="card-footer">
             Add an item to your cart to get a detailed quote.
         </div>
+
+
+        <div id = "virtualDom" style = "opacity : 0">
+        </div>
     <!--end::Form-->
     </div>
 </template>
@@ -65,8 +74,14 @@ import { mapGetters } from "vuex"
 import { mapState } from "vuex"
 import { mapActions } from "vuex"
 
+import ProgressModalComponent from '../common/ProgressModalComponent'
+
+
 export default {
     name : "ItemDetail",
+    components : {
+        ProgressModalComponent
+    },
     data() {
         return {
             editable : false,
@@ -74,43 +89,85 @@ export default {
             isDescriptable : false,
             newItem : {
                 id : 0,
-                url: "https://www.mercari.com/us/item/m25479651386/?ref=brand_detail",
+                url: this.getItemUrl,
                 productName : "",
                 description : "",
                 quantity : 1,
-                imageUrl: "https://res.cloudinary.com/whiterabbitexpress-dev/image/fetch/c_fit,h_200,w_200/https://wre-product-image-cache.s3.amazonaws.com/image%257C3%257C1021615885",
-                price : {
-                    priceYen : 0,
-                }
+                imageUrl: "",
+                priceYen : 0,
+            },
+            progressVisible : false
+        }
+    },
+    watch : {
+        WizardStep: function (newWizardStep, oldWizardStep) {
+            if (oldWizardStep == 1) {
+                this.fetchingProduction()
             }
         }
     },
     computed : {
         // ...mapActions(["item/updateUrl"]),
-        ...mapGetters(['getItemUrl','getItemCount', 'getItemsDetail']),
+        ...mapGetters(['getItemUrl','getItemCount', 'getItemsDetail', 'getWizardStep']),
+        WizardStep : {
+            get() {
+                return this.getWizardStep;
+            },
+            set(value) {
+                if (value == 2) {
+                    this.fetchingProduction()
+                }
+            }
+        }
     },
     methods : {
         ...mapActions([
             "updateStep",
             "addNewItem"
         ]),
+        fetchingProduction () {
+            this.progressVisible = true
+            const self=this
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', this.getItemUrl, true);
+            xhr.responseType = 'document';
+            xhr.onload = function(e) {
+                var doc = this.response;
+                console.log(this)
+                console.log(this.response)
+
+                var s = new XMLSerializer();
+                var str = s.serializeToString(doc);
+
+                document.getElementById('virtualDom').innerHTML = str
+
+                setTimeout(()=>{
+                    var img_src = document.getElementsByTagName("img");
+                    let max_img = img_src[0].clientHeight * img_src[0].clientWidth
+                    for (let i = 0 ; i < img_src.length; i ++ ) {
+                        if (max_img < img_src[i].clientHeight  * img_src[i].clientWidth) {
+                            max_img = img_src[i].clientHeight * img_src[i].clientWidth
+                            self.newItem.productName = img_src[i].alt
+                            self.newItem.imageUrl = img_src[i].src
+                        }
+                    }
+                    document.getElementById('virtualDom').innerHTML = ""
+                    self.progressVisible = false
+                }, 1000)
+            };
+            xhr.send();
+        },
         AddItem() {
-            if (this.newItem.productName && this.newItem.price.priceYen && (!this.isDescriptable || this.newItem.description)) {
+            if (this.newItem.productName && this.newItem.priceYen && (!this.isDescriptable || this.newItem.description)) {
                 this.newItem.id = this.getItemsDetail[this.getItemCount-1].id + 1;
+                this.newItem.url = this.getItemUrl;
+
                 const self = this;
-                this.addNewItem(this.newItem)
-                //this.updateStep(3)
+                this.addNewItem(self.newItem).then(()=>{
+                    this.updateStep(3)
+                })
             }
         }
-        // editUrl() {
-        //     this.editable = true
-        //     const inputEle = this.$refs.itemurlInput;
-        //     inputEle.focus()
-        // },
-        // newUrl() {
-        //     console.log("The Item Url has changed")
-        //     this.updateUrl(value)
-        // }
     }
 }
 </script>

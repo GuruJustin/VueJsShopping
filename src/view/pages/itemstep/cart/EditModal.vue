@@ -4,15 +4,52 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
 
-                    <div class="modal-header">
-                        <h6>Are you really going to remove this item?</h6>
-                        <h5>Production Name : <strong>{{item.productName}}</strong></h5>
-                    </div>
+                  <div class="modal-header">
+                      <h6>Edit</h6>
+                  </div>
 
-                    <div class="modal-footer">
-                        <button v-on:click="confirmation()" type="button" style="color : #43a047!important;font-size:15px;font-family:italic">Remove</button>
-                        <button v-on:click="$emit('close')" type="button" style="color : #43a047!important;font-size:15px;" data-dismiss="modal">Cancel</button>
+                  <div class="card-body" style = "max-height : 500px; overflow:auto">
+                    <div class="form-group">
+                        <label for="inputUrl">Product web Page <span class="text-danger">*</span></label>
+                        <input class="form-control" disabled="disabled" :value="getItemUrl"/>
                     </div>
+                    <div class="form-group">
+                        <label for="inputUrl">Product Name</label>
+                        <input class="form-control" v-model="newItem.productName"/>
+                        <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                    </div>
+                    <div class="form-group">
+                        <a @click="isDescriptable += 1">Add size, color or other options</a>
+                        <input class="form-control" v-model="newItem.description" v-show="isDescriptable%2"/>
+                        <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUrl">Quantity to buy</label>
+                        <input class="form-control" v-model="newItem.quantity"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUrl">Item Price in Japanese Yen</label>
+                        <input class="form-control" type="number" v-model="newItem.priceYen"/>
+                        <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUrl">Product Image (beta)</label>
+                        <b-card
+                            :img-src="newItem.imageUrl"
+                            img-alt="Image"
+                            img-top
+                            tag="article"
+                            style="max-width: 20rem;"
+                        >
+                            <b-button href="#" variant="primary" class = "btn btn-danger btn-outline-danger"><i class = "far fa-times-circle"></i>Reject</b-button>
+                        </b-card>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button v-on:click="saveChange()" type="button" style="color : #43a047!important;font-size:15px;font-family:italic">SAVE</button>
+                    <button v-on:click="$emit('close')" type="button" style="color : #43a047!important;font-size:15px;" data-dismiss="modal">CANCEL</button>
+                  </div>
                 </div>
             </div>
         </div>
@@ -24,27 +61,53 @@
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
-    name : 'EditModalBox',
-    props : [
-      'id'
-    ],
-    computed: {
-      ...mapGetters(['getItemDetailbyId']),
-        item : {
-          get() {
-            return this.getItemDetailbyId(this.id)
-          },
-          set() {
-          }
-        }
-    },
-    methods : {
-        ...mapActions(['deleteItem']),
-        confirmation:function() {
-          this.deleteItem(this.id)
-          this.$emit('close');
-        }
+  name : 'EditModalBox',
+  props : [
+    'id'
+  ],
+  data () {
+    return {
+      isDescriptable : false,
+      newItem : {
+        productName : '',
+        description : "",
+        quantity : 0,
+        priceYen : 0
+      }
     }
+  },
+  mounted () {
+    Object.assign(this.newItem, this.item)
+  },
+  watch:{
+    id : function(val){
+     Object.assign(this.newItem, this.item)
+    }
+  },
+  computed: {
+    ...mapGetters(['getItemDetailbyId', 'getItemUrl']),
+    item : {
+      get() {
+        return this.getItemDetailbyId(this.id)
+      },
+      set() {
+      }
+    }
+  },
+  methods : {
+    ...mapActions(['modifyItemDetail']),
+    saveChange : function() {
+      console.log('heyehey');
+      let value = {
+        'id': this.id,
+        'detail' : this.newItem
+      }
+      this.modifyItemDetail(value).then((res) => {
+        console.log(res)
+      })
+      this.$emit('close') 
+    }
+  }
 }
 </script>
 
@@ -95,14 +158,13 @@ export default {
   }
 }
 
-
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .modal-default-button {

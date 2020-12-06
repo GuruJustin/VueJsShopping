@@ -15,20 +15,7 @@ const state = {
             description : "I don't know what it is exactly",
             quantity : 1,
             imageUrl: "https://res.cloudinary.com/whiterabbitexpress-dev/image/fetch/c_fit,h_200,w_200/https://wre-product-image-cache.s3.amazonaws.com/image%257C3%257C1021615885",
-            price : {
-                priceYen : 2300,
-            }
-        },
-        {
-            id : 2,
-            url:"https://www.mercari.com/us/item/m25479651386/?ref=brand_detail",
-            productName : "Heyhey's Head",
-            description : "I don't know what it is exactly",
-            quantity : 1,
-            imageUrl: "https://res.cloudinary.com/whiterabbitexpress-dev/image/fetch/c_fit,h_200,w_200/https://wre-product-image-cache.s3.amazonaws.com/image%257C3%257C1021615885",
-            price : {
-                priceYen : 6230,
-            }
+            priceYen : 2300,
         }
     ]
 };
@@ -63,7 +50,7 @@ const getters = {
         let sum = 0;
         let cnt = getters.getItemCount
         for (let i = 0 ; i < cnt ; i ++) 
-            sum += state.items[i].price.priceYen
+            sum += state.items[i].priceYen * state.items[i].quantity
         return sum
     },
     getAllServiceFee(state,getters) {
@@ -89,13 +76,15 @@ const mutations = {
         state.itemurl = value
     },
     ADD_NEWITEM(state, value) {
-        state.items.push(value)
+        const newItem = {}
+        Object.assign(newItem, value);
+        state.items.push(newItem)
     },
     DELETE_ITEM(state, index) {
         state.items.splice(index, 1)
     },
-    MODIFY_ITEMDETAIL(state, id, value) {
-        state.items[id] = value
+    MODIFY_ITEMDETAIL(state, value) {
+        Object.assign(state.items[value.id], value.detail);
     },
     SET_DOMESTIC(state, value) {
         state.domestic = value
@@ -114,11 +103,10 @@ const actions = {
     },
     modifyItemDetail(context, value){
         return new Promise((resolve, reject) => {
-            context.commit("MODIFY_ITEMDETAIL", value.id, value.detail);
+            context.commit("MODIFY_ITEMDETAIL", value);
             resolve(value)
         })
     },
-
     setDomestic(context, value) {
         return new Promise((resolve, reject) => {
             context.commit('SET_DOMESTIC', value)
