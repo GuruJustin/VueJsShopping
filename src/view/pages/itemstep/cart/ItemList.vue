@@ -2,7 +2,7 @@
 
     <table class="table table-bordered mt-5" >
         <thead class= "bg-primary">
-            <th>Item</th>
+            <th style="max-width:250px">Item</th>
             <th>Description</th>
             <th>Image</th>
             <th>Quantity</th>
@@ -12,13 +12,13 @@
         </thead>
         <tbody>
             <tr v-for="(item, index) in items" :key="index" >
-                <td>{{item.productName}} <br/> {{item.url}}</td>
+                <td style="max-width:250px">{{item.productName}} <br/> {{item.url}}</td>
                 <td>{{item.description}}</td>
                 <td><img  :src="item.imageUrl" style="max-width:100px; max-height : 100px"/></td>
                 <td>{{item.quantity}}</td>
-                <td>¥{{item.priceYen}}</td>
-                <td>¥{{item.priceYen * item.quantity}}</td>
-                <td>
+                <td>¥ {{$numberWithCommas(item.priceYen)}}</td>
+                <td>¥ {{$numberWithCommas(item.priceYen * item.quantity)}}</td>
+            <td>
                     <button class = "btn btn-icon btn-sm" style = "margin-left:3px" @click="openEditModal(index)"><i class = "fas fa-edit"></i></button>
                     <button class = "btn btn-icon btn-sm" style = "margin-left:3px" @click="openRemoveModal(index)"><i class = "fas far fa-trash-alt"></i></button>
                 </td>

@@ -10,26 +10,26 @@
             <div class="form-group" style="font-size : 15px; font-weight : 600; font-family : 'Font Awesome 5 Free'">
                 <div class ="row">
                     <div class = "col-6">Item Total :</div>
-                    <div class = "col-6">{{getAllItemPrice}}</div>
+                    <div class = "col-6">¥ {{ $numberWithCommas(getAllItemPrice)}}</div>
                 </div>
                 <div v-show="domestic == 'true'" class ="row" style = "margin-top : -20px">
                     <div class = "col-6">Domestic Shipping :<span style = "color : #6993ff">(estimated)</span></div>
-                    <div class = "col-6">¥{{getDomesticPrice}}</div>
+                    <div class = "col-6">¥ {{$numberWithCommas(getDomesticPrice)}}</div>
                 </div>
 
                 <div class ="row"  style = "margin-top : -20px">
                     <div class = "col-6">Packing fee : </div>
-                    <div class = "col-6">¥{{getPerShopFee}}</div>
+                    <div class = "col-6">¥ {{$numberWithCommas(getPerShopFee)}}</div>
                 </div>
 
                 <div class ="row" style = "margin-top : -20px">
                 <div class = "col-6">Service Fee(12%) :</div>
-                <div class = "col-6">¥{{getAllServiceFee}}</div>
+                <div class = "col-6">¥ {{$numberWithCommas(getAllServiceFee)}}</div>
                 </div>
 
                 <div class ="row" style = "margin-top : -20px">
                 <div class = "col-6">Estimated Total :</div>
-                <div class = "col-6">(JP) ¥{{getTotalItemPrice}}</div>
+                <div class = "col-6">(JP) ¥{{$numberWithCommas(getTotalItemPrice)}}</div>
                 </div>
             </div>
 

@@ -49,6 +49,11 @@ router.beforeEach((to, from, next) => {
   }, 100);
 });
 
+Vue.prototype.$numberWithCommas = function (x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
+
 new Vue({
   router,
   store,

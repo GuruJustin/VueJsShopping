@@ -30,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label for="inputUrl">Quantity to buy</label>
-                <input class="form-control" v-model="newItem.quantity"/>
+                <input class="form-control"  type="number"  v-model="newItem.quantity"/>
             </div>
             <div class="form-group">
                 <label for="inputUrl">Item Price in Japanese Yen</label>
-                <input class="form-control" type="number" v-model="newItem.priceYen"/>
+                <input class="form-control" v-model="newItem.priceYen"/>
                 <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please put the price listed on the website in Japanese Yen.</span>
             </div>
 

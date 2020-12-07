@@ -36,7 +36,7 @@
               </span>
               <div class="d-flex align-items-center mt-2">
                 <span class="font-weight-bold mr-1 text-dark-75 font-size-3">
-                  {{ item.priceYen }}
+                  ¥{{ $numberWithCommas(item.priceYen) }}
                 </span>
                 <span class="text-muted mr-1">for</span>
                 <span class="font-weight-bold mr-2 text-dark-75 font-size-3">
@@ -58,7 +58,7 @@
     <div class="p-8">
       <div class="d-flex align-items-center justify-content-between mb-4">
         <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
-        <span class="font-weight-bolder text-dark-50 text-right">¥ {{getTotalItemPrice}}</span>
+        <span class="font-weight-bolder text-dark-50 text-right">¥ {{$numberWithCommas(getTotalItemPrice)}}</span>
       </div>
     </div>
     <!--end::Summary-->

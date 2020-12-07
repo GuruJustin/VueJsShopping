@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="inputUrl">Product web Page</label>
                 <b-form-input v-model="itemUrl"></b-form-input>
-                <span v-show="!itemUrl || !preferable" class="form-text text-muted" style = "color : red !important">Pls input the correct url of your item or Please confirm your internet connection.</span>
+                <span v-show="!itemUrl || !preferable" class="form-text text-muted" style = "color : red !important">Gomen nasa! It seems the URL is not complete. Please try again by copying and pasting the URL from the item's search bar into this bar.</span>
             </div>
             <button @click="nextStep" class="btn btn-primary mr-2">Next</button>
         </div>
