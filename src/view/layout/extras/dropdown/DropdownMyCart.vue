@@ -58,7 +58,7 @@
     <div class="p-8">
       <div class="d-flex align-items-center justify-content-between mb-4">
         <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
-        <span class="font-weight-bolder text-dark-50 text-right">$ {{getTotalItemPrice}}</span>
+        <span class="font-weight-bolder text-dark-50 text-right">¥ {{getTotalItemPrice}}</span>
       </div>
     </div>
     <!--end::Summary-->

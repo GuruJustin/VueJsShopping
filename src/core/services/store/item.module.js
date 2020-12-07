@@ -3,9 +3,9 @@ export const DOMESTICSHIPPING = 9.92;
 const state = {
     itemurl : "http://www.heyhey.com",
     domestic : false,
-    domesticPrice : 9.92,
-    perItemFee : 10,
-    perShopFee : 4,
+    domesticPrice : 1000,
+    perItemFee : 500,
+    perShopFee : 500,
     serviceFee : 12,
     items: [
         {

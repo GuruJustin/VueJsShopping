@@ -10,7 +10,6 @@
              @fetchingProduction="fetchingProduction"
              v-show="progressVisible"
         />
-        <button class = "btn btn-primary" @click="fetchingProduction">stress</button>
         <div class="card-body">
             <div class="form-group">
                 <label for="inputUrl">Product web Page <span class="text-danger">*</span></label>
@@ -127,6 +126,8 @@ export default {
         ]),
         fetchingProduction () {
             this.progressVisible = true
+            document.getElementById('virtualDom').innerHTML = ""
+            this.newItem.imageUrl = ""
             const self=this
             var xhr = new XMLHttpRequest();
             xhr.open('GET', this.getItemUrl, true);
