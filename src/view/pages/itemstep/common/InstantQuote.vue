@@ -4,7 +4,7 @@
             <div class="card-header"  style = "padding:8px 15px 8px 15px; min-height : 45px;">
                 <div class="card-title">
                     <h3 class="card-label">
-                        Instant Quote : <span style = "color:red">US$623</span>
+                        Instant Quote : <span style = "color:red">¥(JP Yen)</span>
                     </h3>
                 </div>
             </div>

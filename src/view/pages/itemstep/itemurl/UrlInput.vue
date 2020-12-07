@@ -2,7 +2,7 @@
     <div class="card card-custom">
         <div class="card-header">
             <h3 class="card-title">
-            Add a Url for the product you want as to buy
+            Please add the URL of the item you would like us to buy for you
             </h3>
         </div>
         <!--begin::Form-->
@@ -13,9 +13,6 @@
                 <span v-show="!itemUrl || !preferable" class="form-text text-muted" style = "color : red !important">Pls input the correct url of your item or Please confirm your internet connection.</span>
             </div>
             <button @click="nextStep" class="btn btn-primary mr-2">Next</button>
-        </div>
-        <div class="card-footer">
-            Next we'll gather a few more details so we can make you a quote for you.
         </div>
     <!--end::Form-->
     </div>

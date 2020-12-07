@@ -109,7 +109,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "The Quick & Easy Way to Buy From Japan" },
+      { title: "Shoppu from Japan - Order anything you want from Japan" },
     ]);
 
     // Initialize form wizard

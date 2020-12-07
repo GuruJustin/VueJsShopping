@@ -11,7 +11,7 @@
             <div class="card-body" style = "padding:8px 15px 8px 15px">
 
                 <div class="form-group" style="margin-bottom:0.5rem">
-                    <label for="inputUrl">White Rabbit Express is a Tokyo based buying service products from Japan</label>
+                    <label for="inputUrl">Shoppu from Japan is your private shopping service from Japan</label>
                     
                     <div class = "help-list">
                         <div class = "help-list-wrapper"><i class = "fas fa-home"></i></div>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     
-                    <div class = "help-list">
+                    <!-- <div class = "help-list">
                         <div class = "help-list-wrapper"><i class = "fas fa-location-arrow"></i></div>
                         <div class = "help-list-container">
                             <div class = "help-list-title mb-1" style="color : #6993ff">
@@ -37,7 +37,7 @@
                                 Start Tour
                             </button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class = "help-list">
                         <div class = "help-list-wrapper"><i class = "fas fa-calculator"></i></div>
@@ -46,12 +46,12 @@
                                 Shipping Rate
                                 <span class="label label-success label-pill label-inline ml-1">New</span>
                             </div>
-                            <div class = "mb-1">Visit our Take a guided tour of this page</div>
+                            <div class = "mb-1">Check our shipping rates</div>
                         </div>
                         <div class = help-list-btn>
                             <button class = "btn btn-primary btn-outline-primary">
                                 <i class = "fas fa-plus-square"></i>
-                                Start Tour
+                                Check
                             </button>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ export default {
     }
     .help-list-btn{
         button {
-            width : 100px;
+            width : 80px;
             padding : 2px;
         }
     }

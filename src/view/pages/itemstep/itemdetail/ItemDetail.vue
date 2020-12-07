@@ -2,7 +2,7 @@
     <div class="card card-custom">
         <div class="card-header">
             <h3 class="card-title">
-            We need a few more details to create your quote.
+            Almost there! We just need a few more details to complete your order.
             </h3>
         </div>
         <!--begin::Form-->
@@ -24,7 +24,7 @@
                 <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
             </div>
             <div class="form-group">
-                <a @click="isDescriptable += 1">Add size, color or other options</a>
+                <a @click="isDescriptable += 1" style="cursor:pointer">Add size, color or other options</a>
                 <input class="form-control" v-model="newItem.description" v-show="isDescriptable%2"/>
                 <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
             </div>
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="inputUrl">Item Price in Japanese Yen</label>
                 <input class="form-control" type="number" v-model="newItem.priceYen"/>
-                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please put the price listed on the website in Japanese Yen.</span>
             </div>
 
             <div class="form-group">
