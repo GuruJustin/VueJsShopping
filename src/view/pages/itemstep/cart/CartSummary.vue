@@ -13,13 +13,13 @@
                     <div class = "col-6">¥ {{ $numberWithCommas(getAllItemPrice)}}</div>
                 </div>
                 <div v-show="domestic == 'true'" class ="row" style = "margin-top : -20px">
-                    <div class = "col-6">Domestic Shipping :<span style = "color : #6993ff">(estimated)</span></div>
+                    <div class = "col-6">Domestic Costs :<span style = "color : #6993ff">(pre-approved)</span></div>
                     <div class = "col-6">¥ {{$numberWithCommas(getDomesticPrice)}}</div>
                 </div>
 
                 <div class ="row"  style = "margin-top : -20px">
                     <div class = "col-6">Packing fee : </div>
-                    <div class = "col-6">¥ {{$numberWithCommas(getPerShopFee)}}</div>
+                    <div class = "col-6">¥ {{$numberWithCommas(getPerShopFee)}} ->  ¥ 2500</div>
                 </div>
 
                 <div class ="row" style = "margin-top : -20px">
@@ -36,11 +36,11 @@
             <b-form-group >
                 <label for="inputUrl" style="font-weight:bold">Pre-approve shipping and get your items faster!</label>
                 <b-form-radio v-model="domestic" name="some-radios" value=true>
-                    I want my items ASAP and approve ¥ 2,500 for shipping.
+                    I want my items ASAP and pre-approve ¥2,500 for shipping.
                     <span class="label label-success label-pill label-inline ml-1">Recommended</span>
                 </b-form-radio>
                 <b-form-radio v-model="domestic" name="some-radios" value=false>
-                    I want to apporve the correct shipping costs after I pay for the items/
+                    I want to approve the correct shipping costs after I pay for the items/
                 </b-form-radio>
             </b-form-group>
 
