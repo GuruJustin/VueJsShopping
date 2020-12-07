@@ -21,12 +21,12 @@
             <div class="form-group">
                 <label for="inputUrl">Product Name</label>
                 <input class="form-control" v-model="newItem.productName"/>
-                <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too</span>
             </div>
             <div class="form-group">
                 <a @click="isDescriptable += 1" style="cursor:pointer">Add size, color or other options</a>
                 <input class="form-control" v-model="newItem.description" v-show="isDescriptable%2"/>
-                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">Please Input the Production Name.</span>
+                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too</span>
             </div>
             <div class="form-group">
                 <label for="inputUrl">Quantity to buy</label>
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="inputUrl">Item Price in Japanese Yen</label>
                 <input class="form-control" v-model="newItem.priceYen"/>
-                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please put the price listed on the website in Japanese Yen.</span>
+                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please let us know the price listed on the website in Japanese Yen.</span>
             </div>
 
             <div class="form-group">

@@ -50,7 +50,8 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.prototype.$numberWithCommas = function (x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  let number = parseInt(x)
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 

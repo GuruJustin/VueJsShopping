@@ -33,18 +33,18 @@
                 </div>
             </div>
 
-            <b-form-group label="Individual radios">
-                <label for="inputUrl" style="font-weight:bold">Get your items faster with Domestic Shipping Pre-Approval</label>
+            <b-form-group >
+                <label for="inputUrl" style="font-weight:bold">Pre-approve shipping and get your items faster!</label>
                 <b-form-radio v-model="domestic" name="some-radios" value=true>
-                    I pre-approve up to ¥9.88 per-shop for domestic shipping.
+                    I want my items ASAP and approve ¥ 2,500 for shipping.
                     <span class="label label-success label-pill label-inline ml-1">Recommended</span>
                 </b-form-radio>
                 <b-form-radio v-model="domestic" name="some-radios" value=false>
-                    I want to manually approve any shipping charges (may delay your order)
+                    I want to apporve the correct shipping costs after I pay for the items/
                 </b-form-radio>
             </b-form-group>
 
-            <a href ="#">What is Domestic Shipping Pre-Approved</a>
+            <a href ="#">Why should I pre-approve shipping?</a>
         </div>
     <!--end::Form-->
     </div>
