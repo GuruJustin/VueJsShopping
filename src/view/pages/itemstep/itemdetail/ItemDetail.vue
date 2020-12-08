@@ -122,7 +122,7 @@ export default {
     methods : {
         ...mapActions([
             "updateStep",
-            "addNewItem"
+            "addNewItem",
         ]),
         fetchingProduction () {
             this.progressVisible = true
@@ -154,14 +154,17 @@ export default {
                     }
                     document.getElementById('virtualDom').innerHTML = ""
                     self.progressVisible = false
-                }, 1000)
+                }, 1500)
             };
             xhr.send();
         },
         AddItem() {
             if (this.newItem.productName && this.newItem.priceYen && (!this.isDescriptable || this.newItem.description)) {
-                this.newItem.id = this.getItemsDetail[this.getItemCount-1].id + 1;
                 this.newItem.url = this.getItemUrl;
+                if (this.getItemCount != 0) 
+                    this.newItem.id = this.getItemsDetail[this.getItemCount-1].id + 1
+                else
+                    this.newItem.id = 1;
 
                 const self = this;
                 this.addNewItem(self.newItem).then(()=>{
