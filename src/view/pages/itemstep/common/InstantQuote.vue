@@ -11,7 +11,7 @@
             <div class="card-body" style = "padding:8px 15px 8px 15px">
                 <div class="form-group" style="margin-bottom:0.5rem">
                     <label for="inputUrl">View Cart for details</label>
-                    <button class = "btn btn-warning" style = "color:white; width:100%">
+                    <button @click="updateStep(3)" class = "btn btn-warning" style = "color:white; width:100%" >
                         My Cart
                         <i class = "fas fa-shopping-cart"></i>
                     </button>

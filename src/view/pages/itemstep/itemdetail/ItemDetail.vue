@@ -20,6 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="inputUrl">Product Name <span class="text-danger">*</span></label>
+                <input class="form-control" v-model="newItem.productName"/>
                 <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too</span>
             </div>
             <div class="form-group">
@@ -33,9 +34,11 @@
             </div>
             <div class="form-group">
                 <label for="inputUrl">Item Price in Japanese Yen <span class="text-danger">*</span></label>
-                <input class="form-control" v-model="newItem.priceYen"/>
+                <input class="form-control" type="number" v-model="newItem.priceYen"/>
                 <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Numbers only, no Yen(¥) sign or JPY needed</span>
             </div>
+
+            
 
             <div class="form-group">
                 <label for="inputUrl">Product Image (beta)</label>
