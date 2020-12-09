@@ -86,7 +86,7 @@ export default {
         return {
             editable : false,
             preferable : false,
-            isDescriptable : false,
+            isDescriptable : 0,
             newItem : {
                 id : 0,
                 url: this.getItemUrl,
@@ -158,7 +158,8 @@ export default {
             xhr.send();
         },
         AddItem() {
-            if (this.newItem && this.newItem.productName && this.newItem.priceYen && (!this.isDescriptable || this.newItem.description)) {
+            console.log(!this.isDescriptable)
+            if (this.newItem && this.newItem.productName && this.newItem.priceYen && (!(this.isDescriptable%2) || this.newItem.description)) {
                 this.newItem.url = this.getItemUrl;
                 if (this.getItemCount != 0) 
                     this.newItem.id = this.getItemsDetail[this.getItemCount-1].id + 1
@@ -169,9 +170,6 @@ export default {
                 this.addNewItem(self.newItem).then(()=>{
                     this.updateStep(3)
                 })
-            }
-            else {
-                
             }
         }
     }
