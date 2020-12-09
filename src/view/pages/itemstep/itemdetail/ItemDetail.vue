@@ -39,7 +39,6 @@
             </div>
 
             
-
             <div class="form-group">
                 <label for="inputUrl">Product Image (beta)</label>
                 <b-card
@@ -170,6 +169,9 @@ export default {
                 this.addNewItem(self.newItem).then(()=>{
                     this.updateStep(3)
                 })
+            }
+            else {
+                
             }
         }
     }
