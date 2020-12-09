@@ -13,13 +13,13 @@
                     <div class = "col-6">¥ {{ $numberWithCommas(getAllItemPrice)}}</div>
                 </div>
                 <div v-show="domestic == 'true'" class ="row" style = "margin-top : -20px">
-                    <div class = "col-6">Domestic Costs :<span style = "color : #6993ff">(pre-approved)</span></div>
+                    <div class = "col-6">Shipping Costs :<span style = "color : #6993ff">(pre-approved)</span></div>
                     <div class = "col-6">¥ {{$numberWithCommas(getDomesticPrice)}}</div>
                 </div>
 
                 <div class ="row"  style = "margin-top : -20px">
                     <div class = "col-6">Packing fee : </div>
-                    <div class = "col-6">¥ {{$numberWithCommas(getPerShopFee)}} ->  ¥ 2500</div>
+                    <div class = "col-6">¥ {{$numberWithCommas(getPerShopFee)}}</div>
                 </div>
 
                 <div class ="row" style = "margin-top : -20px">
@@ -40,11 +40,11 @@
                     <span class="label label-success label-pill label-inline ml-1">Recommended</span>
                 </b-form-radio>
                 <b-form-radio v-model="domestic" name="some-radios" value=false>
-                    I want to approve the correct shipping costs after I pay for the items/
+                    I want to approve the correct shipping costs after I pay for the items
                 </b-form-radio>
             </b-form-group>
 
-            <a href ="#">Why should I pre-approve shipping?</a>
+            <a href ="#" class = "btn btn-primary">Why should I pre-approve shipping?</a>
         </div>
 
         <a class = "btn btn-success" style = "width:100px" @click="updateStep(1)"><i class = "fas fa-add"></i>Add More Items</a>

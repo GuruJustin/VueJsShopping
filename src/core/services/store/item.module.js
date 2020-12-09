@@ -6,6 +6,8 @@ const state = {
     domesticPrice : 2500,
     perItemFee : 500,
     perShopFee : 500,
+
+    packingFee : 500,
     serviceFee : 12,
     items: [
         // {
@@ -64,8 +66,8 @@ const getters = {
     },
     getTotalItemPrice(state, getters) {
         let cnt = getters.getItemCount
-        let total = (state.domestic == true || state.domestic == "true") ? state.domesticPrice : 0
-        total += (getters.getAllItemPrice + cnt * (getters.getPerItemFee + getters.getPerShopFee) + getters.getAllServiceFee)
+        let total = (cnt > 0 && (state.domestic == true || state.domestic == "true")) ? state.domesticPrice : 0
+        total += (getters.getAllItemPrice + (cnt ? state.packingFee : 0) + getters.getAllServiceFee)
         return total
     }
 };
