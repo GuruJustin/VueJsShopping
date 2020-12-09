@@ -40,7 +40,7 @@
                     <span class="label label-success label-pill label-inline ml-1">Recommended</span>
                 </b-form-radio>
                 <b-form-radio v-model="domestic" name="some-radios" value=false>
-                    I want to approve the correct shipping costs after I pay for the items
+                    I want to approve the correct shipping costs after I pay for the items.
                 </b-form-radio>
             </b-form-group>
 
