@@ -29,7 +29,7 @@
 
                 <div class ="row" style = "margin-top : -20px">
                 <div class = "col-6">Estimated Total :</div>
-                <div class = "col-6">(JP) ¥{{$numberWithCommas(getTotalItemPrice)}}</div>
+                <div class = "col-6">(JP) ¥ {{$numberWithCommas(getTotalItemPrice)}}</div>
                 </div>
             </div>
 
@@ -46,6 +46,8 @@
 
             <a href ="#">Why should I pre-approve shipping?</a>
         </div>
+
+        <a class = "btn btn-success" style = "width:100px" @click="updateStep(1)"><i class = "fas fa-add"></i>Add More Items</a>
     <!--end::Form-->
     </div>
 </template>
@@ -68,7 +70,7 @@ export default {
             'getPerItemFee',
             'getPerShopFee',
             'getTotalItemPrice',
-            'getDomesticPrice'
+            'getDomesticPrice',
         ]),
         domestic : {
             get() {
@@ -80,7 +82,7 @@ export default {
         }
     },
     methods : {
-        ...mapActions(['setDomestic'])
+        ...mapActions(['setDomestic','updateStep'])
     }
 }
 </script>

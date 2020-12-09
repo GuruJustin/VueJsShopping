@@ -3,7 +3,7 @@
     <table class="table table-bordered mt-5" >
         <thead class= "bg-primary">
             <th style="max-width:250px">Item</th>
-            <th>Description</th>
+            <th>Comments</th>
             <th>Image</th>
             <th>Quantity</th>
             <th>Price</th>
@@ -18,7 +18,7 @@
                 <td>{{item.quantity}}</td>
                 <td>¥ {{$numberWithCommas(item.priceYen)}}</td>
                 <td>¥ {{$numberWithCommas(item.priceYen * item.quantity)}}</td>
-            <td>
+                <td>
                     <button class = "btn btn-icon btn-sm" style = "margin-left:3px" @click="openEditModal(index)"><i class = "fas fa-edit"></i></button>
                     <button class = "btn btn-icon btn-sm" style = "margin-left:3px" @click="openRemoveModal(index)"><i class = "fas far fa-trash-alt"></i></button>
                 </td>

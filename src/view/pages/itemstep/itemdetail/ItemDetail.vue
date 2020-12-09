@@ -12,30 +12,29 @@
         />
         <div class="card-body">
             <div class="form-group">
-                <label for="inputUrl">Product web Page <span class="text-danger">*</span></label>
+                <label for="inputUrl">Product web Page</label>
                 <div style="display:flex;flex-direction:row">
                 <input class="form-control" :disabled="!editable" v-model="getItemUrl" ref="itemurlInput"/>
                 <a class = "btn btn-success" style = "width:100px" @click="updateStep(1)"><i class = "fas fa-edit"></i>Edit</a>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputUrl">Product Name</label>
-                <input class="form-control" v-model="newItem.productName"/>
+                <label for="inputUrl">Product Name <span class="text-danger">*</span></label>
                 <span v-show="!newItem.productName" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too</span>
             </div>
             <div class="form-group">
                 <a @click="isDescriptable += 1" style="cursor:pointer">Add size, color or other options</a>
                 <input class="form-control" v-model="newItem.description" v-show="isDescriptable%2"/>
-                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too</span>
+                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too. If you have no comments, please write: No comment or /</span>
             </div>
             <div class="form-group">
-                <label for="inputUrl">Quantity to buy</label>
+                <label for="inputUrl">Quantity to buy <span class="text-danger">*</span></label>
                 <input class="form-control"  type="number"  v-model="newItem.quantity"/>
             </div>
             <div class="form-group">
-                <label for="inputUrl">Item Price in Japanese Yen</label>
+                <label for="inputUrl">Item Price in Japanese Yen <span class="text-danger">*</span></label>
                 <input class="form-control" v-model="newItem.priceYen"/>
-                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Please let us know the price listed on the website in Japanese Yen.</span>
+                <span v-show="!newItem.priceYen" class="form-text text-muted" style = "color : red !important">Numbers only, no Yen(¥) sign or JPY needed</span>
             </div>
 
             <div class="form-group">
@@ -134,8 +133,6 @@ export default {
             xhr.responseType = 'document';
             xhr.onload = function(e) {
                 var doc = this.response;
-                console.log(this)
-                console.log(this.response)
 
                 var s = new XMLSerializer();
                 var str = s.serializeToString(doc);
@@ -159,7 +156,7 @@ export default {
             xhr.send();
         },
         AddItem() {
-            if (this.newItem.productName && this.newItem.priceYen && (!this.isDescriptable || this.newItem.description)) {
+            if (this.newItem && this.newItem.productName && this.newItem.priceYen && (!this.isDescriptable || this.newItem.description)) {
                 this.newItem.url = this.getItemUrl;
                 if (this.getItemCount != 0) 
                     this.newItem.id = this.getItemsDetail[this.getItemCount-1].id + 1

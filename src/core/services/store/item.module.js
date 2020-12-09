@@ -3,20 +3,20 @@ export const DOMESTICSHIPPING = 9.92;
 const state = {
     itemurl : "http://www.heyhey.com",
     domestic : false,
-    domesticPrice : 1000,
+    domesticPrice : 2500,
     perItemFee : 500,
     perShopFee : 500,
     serviceFee : 12,
     items: [
-        {
-            id : 1,
-            url:"https://www.mercari.com/us/item/m25479651386/?ref=brand_detail",
-            productName : "Heyhey's Head",
-            description : "I don't know what it is exactly",
-            quantity : 1,
-            imageUrl: "https://res.cloudinary.com/whiterabbitexpress-dev/image/fetch/c_fit,h_200,w_200/https://wre-product-image-cache.s3.amazonaws.com/image%257C3%257C1021615885",
-            priceYen : 2300,
-        }
+        // {
+        //     id : 1,
+        //     url:"https://www.mercari.com/us/item/m25479651386/?ref=brand_detail",
+        //     productName : "Heyhey's Head",
+        //     description : "I don't know what it is exactly",
+        //     quantity : 1,
+        //     imageUrl: "https://res.cloudinary.com/whiterabbitexpress-dev/image/fetch/c_fit,h_200,w_200/https://wre-product-image-cache.s3.amazonaws.com/image%257C3%257C1021615885",
+        //     priceYen : 2300,
+        // }
     ]
 };
 
@@ -64,8 +64,7 @@ const getters = {
     },
     getTotalItemPrice(state, getters) {
         let cnt = getters.getItemCount
-        console.log(cnt);
-        let total = state.domestic == true ? state.domesticPrice : 0
+        let total = (state.domestic == true || state.domestic == "true") ? state.domesticPrice : 0
         total += (getters.getAllItemPrice + cnt * (getters.getPerItemFee + getters.getPerShopFee) + getters.getAllServiceFee)
         return total
     }

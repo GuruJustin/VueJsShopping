@@ -6,7 +6,7 @@
 
                     <div class="modal-header">
                         <h6>Are you really going to remove this item?</h6>
-                        <h5>Production Name : <strong>{{item.productName}}</strong></h5>
+                        <h5>Production Name : <strong>{{item ? item.productName : ''}}</strong></h5>
                     </div>
 
                     <div class="modal-footer">

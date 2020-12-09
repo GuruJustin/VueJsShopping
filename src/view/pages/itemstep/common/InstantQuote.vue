@@ -22,11 +22,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 export default {
     name:"InstantQuote",
     computed : {
         ...mapGetters(['getTotalItemPrice'])
+    },
+    methods : { 
+        ...mapActions(['updateStep']),
     }
 }
 </script>
