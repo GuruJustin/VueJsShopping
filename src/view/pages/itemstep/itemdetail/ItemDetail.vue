@@ -26,7 +26,7 @@
             <div class="form-group">
                 <a @click="isDescriptable += 1" style="cursor:pointer">Add size, color or other options</a>
                 <input class="form-control" v-model="newItem.description" v-show="isDescriptable%2"/>
-                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">If applicable - any additional comments are welcome too. If you have no comments, please write: No comment or /</span>
+                <span v-show="isDescriptable%2 && !newItem.description" class="form-text text-muted" style = "color : red !important">If applicable - if you have no comments please write: No comments or /. Any additional comments are welcome too.</span>
             </div>
             <div class="form-group">
                 <label for="inputUrl">Quantity to buy <span class="text-danger">*</span></label>
